@@ -1,8 +1,8 @@
 accessing
 temporariesFromParser
 	| tempRanges |
-	tempRanges := ranges
-				select: [:each | #(#patternTempVar #patternArg) includes: each type].
+	tempRanges := ranges haltOnce
+				select: [:each | #(#patternTempVar #patternArg #undefinedIdentifier) includes: each type].
 	tempRanges addAll: self blockTemporaries.
 	^ tempRanges
 		collect: [:each | ECLocalEntry
